@@ -23,5 +23,15 @@ for ($i = 0; $i < 200; $i++) {
     $employeeIds[] = $pdo->lastInsertId();
 }
 
+for ($i = 0; $i < 500; $i++) {
+    $stmt = $pdo->prepare("INSERT INTO Transaction (employee_id, office_id, datelog, action, remarks, documentcode) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->execute([
+        $faker->randomElement($employeeIds),
+        $faker->randomElement($officeIds),
+        $faker->dateTimeBetween('-1 years', 'now')->format('Y-m-d H:i:s'),
+        $faker->word, $faker->sentence, strtoupper($faker->bothify('DOC###'))
+    ]);
+}
+
 echo "Fake data inserted successfully!";
 ?> 
