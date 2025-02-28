@@ -29,9 +29,12 @@ for ($i = 0; $i < 500; $i++) {
         $faker->randomElement($employeeIds),
         $faker->randomElement($officeIds),
         $faker->dateTimeBetween('-1 years', 'now')->format('Y-m-d H:i:s'),
-        $faker->word, $faker->sentence, strtoupper($faker->bothify('DOC###'))
+        $faker->word,
+        $faker->sentence(), // FIXED: Use parentheses
+        strtoupper($faker->bothify('DOC###'))
     ]);
 }
+
 
 echo "Fake data inserted successfully!";
 ?> 
