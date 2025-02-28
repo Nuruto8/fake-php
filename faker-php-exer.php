@@ -37,4 +37,5 @@ for ($i = 0; $i < 500; $i++) {
 
 
 echo "Fake data inserted successfully!";
+$conn->close();
 ?> 
