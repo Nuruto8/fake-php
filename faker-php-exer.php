@@ -13,13 +13,14 @@ for ($i = 0; $i < 50; $i++) {
     ]);
     $officeIds[] = $pdo->lastInsertId();
 }
-$officeIds = [];
-for ($i = 0; $i < 50; $i++) {
-    $stmt = $pdo->prepare("INSERT INTO Office (name, contactnum, email, address, city, country, postal) VALUES (?, ?, ?, ?, ?, ?, ?)");
+
+$employeeIds = [];
+for ($i = 0; $i < 200; $i++) {
+    $stmt = $pdo->prepare("INSERT INTO Employee (lastname, firstname, office_id, address) VALUES (?, ?, ?, ?)");
     $stmt->execute([
-        $faker->company, $faker->phoneNumber, $faker->email, $faker->address, $faker->city, "Philippines", $faker->postcode
+        $faker->lastName, $faker->firstName, $faker->randomElement($officeIds), $faker->address
     ]);
-    $officeIds[] = $pdo->lastInsertId();
+    $employeeIds[] = $pdo->lastInsertId();
 }
 
 echo "Fake data inserted successfully!";
